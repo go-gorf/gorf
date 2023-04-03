@@ -1,4 +1,4 @@
-package core
+package gorf
 
 import (
 	"fmt"
@@ -6,13 +6,13 @@ import (
 )
 
 // Gorp App interface
-type GorpApp interface {
+type GorfApp interface {
 	Setup()
 	Register(r *gin.Engine)
 }
 
 // array of all registerd apps
-var Apps []GorpApp
+var Apps []GorfApp
 
 // Setup all apps
 func SetupApps() {
