@@ -11,7 +11,7 @@ go get github.com/go-gorf/gorf
 ```
 Install gorf auth app
 ```shell
-go get github.com/go-gorf/contrib/auth
+go get github.com/go-gorf/auth
 ```
 
 ## Quickstart
@@ -48,7 +48,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-gorf/gorf"
-	"github.com/go-gorf/gorf-contrib/auth"
+	"github.com/go-gorf/auth"
 )
 
 // add all the apps
