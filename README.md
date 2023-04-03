@@ -7,11 +7,11 @@ Django inspired Golang Rest Framework
 
 Install gorf
 ```shell
-github.com/go-gorf/gorf
+go get github.com/go-gorf/gorf
 ```
 Install gorf auth app
 ```shell
-github.com/go-gorf/gorf
+go get github.com/go-gorf/contrib/auth
 ```
 
 ## Quickstart
