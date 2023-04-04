@@ -15,11 +15,11 @@ type DatabaseBackend interface {
 }
 
 type SqliteBackend struct {
-	name string
+	Name string
 }
 
 func (backend *SqliteBackend) Connect() error {
-	DB, err = gorm.Open(sqlite.Open(backend.name), &gorm.Config{})
+	DB, err = gorm.Open(sqlite.Open(backend.Name), &gorm.Config{})
 	return err
 }
 
@@ -28,11 +28,11 @@ func (backend *SqliteBackend) Close() error {
 }
 
 type PostgrSQLBackend struct {
-	dsn string
+	Dsn string
 }
 
 func (backend *PostgrSQLBackend) Connect() error {
-	DB, err = gorm.Open(postgres.Open(backend.dsn), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(backend.Dsn), &gorm.Config{})
 	return err
 }
 
