@@ -13,16 +13,16 @@ var apps = []GorfApp{}
 func LoadSettings() {
 	// jwt secret key
 	Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRGnql2zWJu08YleBx6pEv0cQ09a"
+	Settings.DbConf = &SqliteBackend{
+		"db.sqlite",
+	}
 }
 
 // bootstrap server
 func BootstrapRouter() *gin.Engine {
 	Apps = append(apps)
 	LoadSettings()
-	dbConf := DbConf{
-		"data.db",
-	}
-	InitializeDatabase(&dbConf)
+	InitializeDatabase()
 	SetupApps()
 	r := gin.Default()
 	RegisterApps(r)
