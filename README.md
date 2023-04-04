@@ -58,17 +58,17 @@ var apps = []gorf.GorfApp{
 
 func LoadSettings() {
 	// jwt secret key
-	gorf.Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRGnql2zWJu08YleBx6pEv0cQ09a"
+	Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRGnql2zWJu08YleBx6pEv0cQ09a"
+	Settings.DbConf = &SqliteBackend{
+		"db.sqlite",
+	}
 }
 
 // bootstrap server
 func BootstrapRouter() *gin.Engine {
 	gorf.Apps = append(apps)
 	LoadSettings()
-	dbConf := gorf.DbConf{
-		Name: "data.db",
-	}
-	gorf.InitializeDatabase(&dbConf)
+	gorf.InitializeDatabase()
 	gorf.SetupApps()
 	r := gin.Default()
 	gorf.RegisterApps(r)
