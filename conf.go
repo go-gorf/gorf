@@ -42,5 +42,5 @@ type GlobalSettings struct {
 var Settings = GlobalSettings{
 	UserObjKey: "user",
 	UserObjId:  "id",
-	DbConf:     &SqliteBackend{name: "data.db"},
+	DbConf:     &SqliteBackend{Name: "data.db"},
 }
