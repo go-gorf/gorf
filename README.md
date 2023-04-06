@@ -1,11 +1,10 @@
-# gorf
+# Golang Rest Framework
+
 [![Go](https://github.com/go-gorf/gorf/actions/workflows/go.yml/badge.svg)](https://github.com/go-gorf/gorf/actions/workflows/go.yml)
 
 Django inspired Golang Rest Framework
 
 ## Installation
-
-Install gorf
 ```shell
 go get github.com/go-gorf/gorf
 ```
@@ -14,41 +13,36 @@ Install gorf auth app
 go get github.com/go-gorf/auth
 ```
 
-## Quickstart
+## main.go
 
 Firstly, Create a new main package with following code
 
-``` go
+``` go title="main.go" 
 package main
 
 import (
 	"log"
-
-	"github.com/go-gorf/gorf"
-	"github.com/go-gorf/gorf-contrib/auth"
 )
 
 func main() {
 	r := BootstrapRouter()
-	user := auth.User{}
-	println(user.Email)
 	err := r.Run()
 	if err != nil {
 		log.Fatal("Unable to create the gin server")
 	} // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
-
 ```
 
+## settings.go
 Next, Create a settings.go file in the main package with the following code snippet
 
-``` go
+``` go title="settings.go"
 package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-gorf/gorf"
 	"github.com/go-gorf/auth"
+	"github.com/go-gorf/gorf"
 )
 
 // add all the apps
@@ -58,9 +52,9 @@ var apps = []gorf.GorfApp{
 
 func LoadSettings() {
 	// jwt secret key
-	Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRGnql2zWJu08YleBx6pEv0cQ09a"
-	Settings.DbConf = &SqliteBackend{
-		"db.sqlite",
+	gorf.Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRGnql2zWJu08YleBx6pEv0cQ09a"
+	gorf.Settings.DbConf = &gorf.SqliteBackend{
+		Name: "db.sqlite",
 	}
 }
 
@@ -75,7 +69,3 @@ func BootstrapRouter() *gin.Engine {
 	return r
 }
 ```
-
-## Project Management Board
-
-https://github.com/orgs/go-gorf/projects/1
