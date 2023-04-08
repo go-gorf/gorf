@@ -1,4 +1,4 @@
-# Golang Rest Framework
+# Golang Rest Framework (Gorf)
 
 [![Go](https://github.com/go-gorf/gorf/actions/workflows/go.yml/badge.svg)](https://github.com/go-gorf/gorf/actions/workflows/go.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/go-gorf/gorf.svg)](https://pkg.go.dev/github.com/go-gorf/gorf)  
@@ -144,7 +144,8 @@ func Hello(ctx *gin.Context) {
 }
 
 ```
-## Check the gorf app template repo
+## Check the Gorf project template
 
-https://github.com/go-gorf/template
+
+[https://github.com/go-gorf/template](https://github.com/go-gorf/template)
 
