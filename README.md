@@ -1,7 +1,7 @@
 # Golang Rest Framework
 
 [![Go](https://github.com/go-gorf/gorf/actions/workflows/go.yml/badge.svg)](https://github.com/go-gorf/gorf/actions/workflows/go.yml)
-
+[![Go Reference](https://pkg.go.dev/badge/github.com/go-gorf/gorf.svg)](https://pkg.go.dev/github.com/go-gorf/gorf)  
 Django inspired Golang Rest Framework
 
 ## Installation
@@ -17,7 +17,7 @@ go get github.com/go-gorf/auth
 
 Firstly, Create a new main package with following code
 
-``` go title="main.go" 
+``` go
 package main
 
 import (
@@ -45,12 +45,9 @@ import (
 	"github.com/go-gorf/gorf"
 )
 
-import "template/apps/hello"
-
 // add all the apps
 var apps = []gorf.GorfApp{
 	&auth.AuthApp,
-	&hello.HelloApp,
 }
 
 func LoadSettings() {
@@ -59,8 +56,6 @@ func LoadSettings() {
 	gorf.Settings.DbConf = &gorf.SqliteBackend{
 		Name: "db.sqlite",
 	}
-	// app settings
-	// auth.AuthSettings.NewUserState = auth.AuthState(true)
 }
 
 // bootstrap server
@@ -73,4 +68,75 @@ func BootstrapRouter() *gin.Engine {
 	gorf.RegisterApps(r)
 	return r
 }
+```
+
+## Write your own apps
+
+Create a new package named "hello"
+
+add app.go file
+
+``` go
+package hello
+
+import (
+	"github.com/go-gorf/gorf"
+)
+
+func setup() error {
+	// Add setup here
+	return nil
+}
+
+var HelloApp = gorf.GorfBaseApp{
+	Name:         "Hello",
+	RouteHandler: Urls,
+	SetUpHandler: setup,
+}
+
+```
+
+add urls.go file
+
+``` go
+package hello
+
+import "github.com/gin-gonic/gin"
+
+func Urls(r *gin.Engine) {
+	r.POST("/hello", Hello)
+}
+```
+
+add views.go file
+
+``` go
+package hello
+
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+func Hello(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "Hello world",
+	})
+}
+
+```
+## Check the gorf app template repo
+
+https://github.com/go-gorf/template
+
+## Development
+
+```bash
+go mod edit -replace github.com/go-gorf/auth=../auth
+```
+Or
+
+```
+replace github.com/go-gorf/gorf => ../gorf
+replace github.com/go-gorf/auth => ../auth
 ```
