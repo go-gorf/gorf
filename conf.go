@@ -7,7 +7,7 @@ import (
 
 // Gorp App interface
 type GorfApp interface {
-	Setup()
+	Setup() error
 	Register(r *gin.Engine)
 }
 
@@ -18,8 +18,10 @@ var Apps []GorfApp
 func SetupApps() {
 	fmt.Println("Configuring apps")
 	for _, app := range Apps {
-		println(app)
-		app.Setup()
+		err := app.Setup()
+		if err != nil {
+			panic("Unable to configure apps")
+		}
 	}
 }
 
@@ -29,6 +31,25 @@ func RegisterApps(r *gin.Engine) {
 	for _, app := range Apps {
 		app.Register(r)
 	}
+}
+
+type GorfBaseApp struct {
+	Name         string
+	RouteHandler func(r *gin.Engine)
+	SetUpHandler func() error
+}
+
+func (app *GorfBaseApp) Setup() error {
+	fmt.Printf("Configuring the %v app", app.Name)
+	err := app.SetUpHandler()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (app *GorfBaseApp) Register(r *gin.Engine) {
+	app.RouteHandler(r)
 }
 
 // Global Project settings

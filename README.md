@@ -45,9 +45,12 @@ import (
 	"github.com/go-gorf/gorf"
 )
 
+import "template/apps/hello"
+
 // add all the apps
 var apps = []gorf.GorfApp{
 	&auth.AuthApp,
+	&hello.HelloApp,
 }
 
 func LoadSettings() {
@@ -56,6 +59,8 @@ func LoadSettings() {
 	gorf.Settings.DbConf = &gorf.SqliteBackend{
 		Name: "db.sqlite",
 	}
+	// app settings
+	// auth.AuthSettings.NewUserState = auth.AuthState(true)
 }
 
 // bootstrap server
