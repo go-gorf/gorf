@@ -27,7 +27,7 @@ func SetupApps() {
 
 // Register apps
 func RegisterApps(r *gin.Engine) {
-	internalUrls(r)
+	registerInternalUrls(r)
 	fmt.Println("Registering apps")
 	for _, app := range Apps {
 		app.Register(r)
