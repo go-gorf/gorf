@@ -1,6 +1,7 @@
 package gorf
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 	"net/http"
@@ -26,17 +27,22 @@ func BootstrapRouter() *gin.Engine {
 	SetupApps()
 	r := gin.Default()
 	RegisterApps(r)
-	r.GET("/test", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{"message": "ok"})
-	})
 	return r
 }
 
-func TestNewUserHandler(t *testing.T) {
+func TestHealth(t *testing.T) {
 	r := BootstrapRouter()
-	req, _ := http.NewRequest("GET", "/test", nil)
+	req, _ := http.NewRequest("GET", "/health", nil)
 
 	w := httptest.NewRecorder()
 	r.ServeHTTP(w, req)
 	assert.Equal(t, http.StatusOK, w.Code)
+	var result map[string]string
+
+	err := json.Unmarshal(w.Body.Bytes(), &result)
+	if err != nil {
+		assert.Fail(t, "Unable to parse the response")
+	}
+
+	assert.Equal(t, result["status"], "ok")
 }
