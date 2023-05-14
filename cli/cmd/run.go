@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os/exec"
+
+	"github.com/spf13/cobra"
 )
 
 // runCmd represents the run command

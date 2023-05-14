@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 tomvictor <tom@buildfromzero.com>
+Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 */
 package cmd
 
@@ -11,14 +11,14 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gorf",
-	Short: "A command line application for managing gorf projects",
-	Long: `A command line application for managing gorf projects.
-For example:
+	Use:   "gorf-cli",
+	Short: "A commandline tool for Golang Rest Framework (Gorf)",
+	Long: `A commandline tool for Golang Rest Framework (Gorf)"
+	Example:
 
-Start a new Gorf project by
-gorf init MyProject
-`,
+	gorf-cli init hello
+	
+	`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -35,7 +35,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gorf.yaml)")
+	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gorf-cli.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
