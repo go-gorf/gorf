@@ -32,7 +32,7 @@ Install gorf auth app
 go get github.com/go-gorf/auth
 ```
 
-## Quickstart new project using gorf-cli
+## Quickstart new project using [gorf-cli](http://github.com/go-gorf/gorf-cli)
 
 Install gorf-cli for creating new projects and apps. Make sure you have configured [Go install directory to your system's shell path](https://go.dev/doc/tutorial/compile-install)
 ```bash
@@ -49,7 +49,12 @@ Now go tho the project directory and run the project as follows
 cd hello
 go run .
 ```
-Now open the browser and go to [http://localhost:8080/health](http://localhost:8080/health)
+Now open the browser and go to [http://localhost:8080/health](http://localhost:8080/health).  
+
+new gorf apps can be created using
+```bash
+gorf-cli app newApp
+```
 
 ## Tutorial without cli
 
