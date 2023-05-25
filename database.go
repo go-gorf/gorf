@@ -1,48 +1,46 @@
 package gorf
 
-import (
-	"gorm.io/driver/postgres"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
+import "errors"
+
+type GorfDbOperationType int
+
+const (
+	CREATE GorfDbOperationType = iota
+	GET
+	UPDATE
+	DELETE
 )
 
-var DB *gorm.DB
-var err error
+type GorfQuery interface {
+	Describe() (string, error)
+	Operation() GorfDbOperationType
+}
 
-type DatabaseBackend interface {
-	Connect() error
+type GorfDbResult interface {
+	Data() (string, error)
+}
+
+type GorfDB interface {
+	Get(query GorfQuery) (GorfDbResult, error)
+	Put(query GorfQuery) (GorfDbResult, error)
+	Delete(query GorfQuery) (GorfDbResult, error)
+}
+
+type GorfDbBackend interface {
+	Connect() (*GorfDB, error)
 	Close() error
 }
 
-type SqliteBackend struct {
-	Name string
-}
+var DB *GorfDB
 
-func (backend *SqliteBackend) Connect() error {
-	DB, err = gorm.Open(sqlite.Open(backend.Name), &gorm.Config{})
-	return err
-}
-
-func (backend *SqliteBackend) Close() error {
-	return nil
-}
-
-type PostgrSQLBackend struct {
-	Dsn string
-}
-
-func (backend *PostgrSQLBackend) Connect() error {
-	DB, err = gorm.Open(postgres.Open(backend.Dsn), &gorm.Config{})
-	return err
-}
-
-func (backend *PostgrSQLBackend) Close() error {
-	return nil
-}
-
-func InitializeDatabase() {
-	err := Settings.DbConf.Connect()
-	if err != nil {
-		panic("Unable to initialise the database")
+func InitializeDatabase() error {
+	var err error
+	if Settings.DbBackends == nil {
+		return errors.New("no database backend present")
 	}
+	DB, err = Settings.DbBackends.Connect()
+	if err != nil {
+		return errors.New("Unable to initialise the database")
+	}
+	return nil
 }
