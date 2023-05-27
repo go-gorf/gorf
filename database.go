@@ -22,22 +22,21 @@ type GorfDbResult interface {
 
 type GorfDB interface {
 	Get(query GorfQuery) (GorfDbResult, error)
-	Put(query GorfQuery) (GorfDbResult, error)
-	Delete(query GorfQuery) (GorfDbResult, error)
 }
 
 type GorfDbBackend interface {
-	Connect() (*GorfDB, error)
-	Close() error
+	Connect() (GorfDB, error)
+	Disconnect() error
 }
 
-var DB *GorfDB
+var DB GorfDB
 
 func InitializeDatabase() error {
 	var err error
 	if Settings.DbBackends == nil {
 		return errors.New("no database backend present")
 	}
+
 	DB, err = Settings.DbBackends.Connect()
 	if err != nil {
 		return errors.New("Unable to initialise the database")

@@ -1,32 +1,34 @@
 package gormi
 
-import "github.com/go-gorf/gorf"
-
-type GorfDbResult interface {
-	Data() (string, error)
-}
+import (
+	"github.com/go-gorf/gorf"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+)
 
 type GormDB struct {
+	DB *gorm.DB
 }
 
 func (d *GormDB) Get(query gorf.GorfQuery) (gorf.GorfDbResult, error) {
 	return nil, nil
 }
 
-func (d *GormDB) Put(query gorf.GorfQuery) (gorf.GorfDbResult, error) {
-	return nil, nil
-}
-
-func (d *GormDB) Delete(query gorf.GorfQuery) (gorf.GorfDbResult, error) {
-	return nil, nil
-}
-
 type GormSqliteBackend struct {
+	Name string
 }
 
-func (b *GormSqliteBackend) Connect() (*gorf.GorfDB, error) {
-	return nil, nil
+func (b *GormSqliteBackend) Connect() (gorf.GorfDB, error) {
+	db, err := gorm.Open(sqlite.Open(b.Name), &gorm.Config{})
+	if err != nil {
+		return nil, err
+	}
+	grfDb := &GormDB{
+		DB: db,
+	}
+	return grfDb, nil
 }
-func (b *GormSqliteBackend) Close() error {
+
+func (b *GormSqliteBackend) Disconnect() error {
 	return nil
 }
