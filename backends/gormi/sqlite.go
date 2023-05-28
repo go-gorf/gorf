@@ -6,14 +6,6 @@ import (
 	"gorm.io/gorm"
 )
 
-type GormDB struct {
-	DB *gorm.DB
-}
-
-func (d *GormDB) Get(query gorf.GorfQuery) (gorf.GorfDbResult, error) {
-	return nil, nil
-}
-
 type GormSqliteBackend struct {
 	Name string
 }

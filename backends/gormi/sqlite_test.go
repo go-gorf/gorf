@@ -12,10 +12,21 @@ import (
 
 var apps = []gorf.GorfApp{}
 
+var backend *GormSqliteBackend
+
+func getBackend() *GormSqliteBackend {
+	if backend != nil {
+		return backend
+	}
+	backend := &GormSqliteBackend{"db.sqlite"}
+	return backend
+
+}
+
 func LoadSettings() {
 	// jwt secret key
 	gorf.Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRGnql2zWJu08YleBx6pEv0cQ09a"
-	gorf.Settings.DbBackends = &GormSqliteBackend{}
+	gorf.Settings.DbBackends = &GormSqliteBackend{"db.sqlite"}
 
 }
 
@@ -31,7 +42,7 @@ func BootstrapRouter() *gin.Engine {
 	return r
 }
 
-func TestHealth(t *testing.T) {
+func TestGorfHealth(t *testing.T) {
 	r := BootstrapRouter()
 	req, _ := http.NewRequest("GET", "/health", nil)
 
@@ -46,4 +57,59 @@ func TestHealth(t *testing.T) {
 	}
 
 	assert.Equal(t, result["status"], "ok")
+}
+
+func TestGormSqliteBackend_Connect(t *testing.T) {
+	backend := getBackend()
+	_, err := backend.Connect()
+	assert.NoError(t, err)
+}
+
+func TestGormSqliteBackend_Disconnect(t *testing.T) {
+	backend := getBackend()
+	err := backend.Disconnect()
+	assert.NoError(t, err)
+}
+
+func TestGormDB_AutoMigrate(t *testing.T) {
+	backend := getBackend()
+	db, err := backend.Connect()
+	assert.NoError(t, err)
+	user := &User{}
+	err = db.AutoMigrate(user)
+	assert.NoError(t, err)
+}
+
+func TestGormDB_Create(t *testing.T) {
+	backend := getBackend()
+	db, err := backend.Connect()
+	assert.NoError(t, err)
+	user := &User{}
+	err = db.AutoMigrate(user)
+	assert.NoError(t, err)
+	user.FirstName = "Go"
+	user.LastName = "Gorf"
+	err = db.Create(&user)
+	assert.NoError(t, err)
+	assert.NotZero(t, user.ID)
+}
+
+func TestGormDB_First(t *testing.T) {
+	backend := getBackend()
+	db, err := backend.Connect()
+	assert.NoError(t, err)
+	user := &User{}
+	err = db.AutoMigrate(user)
+
+	assert.NoError(t, err)
+	user.FirstName = "Go"
+	user.LastName = "Gorf"
+
+	err = db.Create(&user)
+	assert.NoError(t, err)
+	assert.NotZero(t, user.ID)
+
+	newUser := &User{}
+	db.First(newUser, user.ID)
+	assert.Equal(t, newUser.FirstName, "Go")
 }

@@ -16,12 +16,18 @@ type GorfQuery interface {
 	Operation() GorfDbOperationType
 }
 
-type GorfDbResult interface {
-	Data() (string, error)
+type GorfQuerySet interface {
+	Count() (int, error)
+	First() (any, error)
+	Last() (any, error)
 }
 
 type GorfDB interface {
-	Get(query GorfQuery) (GorfDbResult, error)
+	Get(dest interface{}, key string) error
+	Filter(dest interface{}, conds ...interface{}) error
+	AutoMigrate(dst ...interface{}) error
+	First(dest interface{}, conds ...interface{}) error
+	Create(value interface{}) error
 }
 
 type GorfDbBackend interface {
