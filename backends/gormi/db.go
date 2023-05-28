@@ -21,10 +21,8 @@ func (d *GormDB) AutoMigrate(dst ...interface{}) error {
 }
 
 func (d *GormDB) First(dest interface{}, conds ...interface{}) error {
-	d.DB.First(dest, conds)
-	return nil
+	return d.DB.First(dest, conds).Error
 }
 func (d *GormDB) Create(value interface{}) error {
-	d.DB.Create(value)
-	return nil
+	return d.DB.Create(value).Error
 }
