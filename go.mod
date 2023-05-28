@@ -7,7 +7,6 @@ require (
 	github.com/stretchr/testify v1.8.2
 )
 
-
 require (
 	github.com/bytedance/sonic v1.8.6 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
