@@ -7,7 +7,7 @@ import (
 )
 
 var apps = []gorf.App{
-	&admin.AdminApp,
+	&admin.App,
 }
 
 func LoadSettings() {

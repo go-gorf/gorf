@@ -4,7 +4,7 @@ go 1.20
 
 replace github.com/go-gorf/gorf => ../../
 
-//replace github.com/go-gorf/admin => ../../../admin
+replace github.com/go-gorf/admin => ../../../admin
 
 require (
 	github.com/gin-gonic/gin v1.9.0
