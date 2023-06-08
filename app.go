@@ -31,7 +31,7 @@ func (app *BaseApp) Description() string {
 }
 
 func (app *BaseApp) Setup() error {
-	fmt.Printf("Configuring the %v app", app.Name)
+	fmt.Printf("Configuring the %v app", app.Name())
 	err := app.SetUpHandler()
 	if err != nil {
 		return err
