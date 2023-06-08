@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-var apps = []gorf.GorfApp{}
+var apps = []gorf.App{}
 
 var backend *GormSqliteBackend
 

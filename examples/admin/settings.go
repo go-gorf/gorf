@@ -6,7 +6,7 @@ import (
 	"github.com/go-gorf/gorf"
 )
 
-var apps = []gorf.GorfApp{
+var apps = []gorf.App{
 	&admin.AdminApp,
 }
 

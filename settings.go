@@ -5,16 +5,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Gorp App interface
-type GorfApp interface {
+// App Gorp App interface
+type App interface {
 	Setup() error
 	Register(r *gin.Engine)
 }
 
-// array of all registerd apps
-var Apps []GorfApp
+// Apps array of all registerd apps
+var Apps []App
 
-// Setup all apps
+// SetupApps Setup all apps
 func SetupApps() {
 	fmt.Println("Configuring apps")
 	for _, app := range Apps {
@@ -25,7 +25,7 @@ func SetupApps() {
 	}
 }
 
-// Register apps
+// RegisterApps Register apps
 func RegisterApps(r *gin.Engine) {
 	registerInternalUrls(r)
 	fmt.Println("Registering apps")
@@ -34,13 +34,13 @@ func RegisterApps(r *gin.Engine) {
 	}
 }
 
-type GorfBaseApp struct {
+type BaseApp struct {
 	Name         string
 	RouteHandler func(r *gin.Engine)
 	SetUpHandler func() error
 }
 
-func (app *GorfBaseApp) Setup() error {
+func (app *BaseApp) Setup() error {
 	fmt.Printf("Configuring the %v app", app.Name)
 	err := app.SetUpHandler()
 	if err != nil {
@@ -49,19 +49,19 @@ func (app *GorfBaseApp) Setup() error {
 	return nil
 }
 
-func (app *GorfBaseApp) Register(r *gin.Engine) {
+func (app *BaseApp) Register(r *gin.Engine) {
 	app.RouteHandler(r)
 }
 
-// Global Project settings
+// GlobalSettings Global Project settings
 type GlobalSettings struct {
 	SecretKey  string
 	UserObjKey string
 	UserObjId  string
-	DbBackends GorfDbBackend
+	DbBackends DbBackend
 }
 
-var Settings = GlobalSettings{
+var Settings = &GlobalSettings{
 	UserObjKey: "user",
 	UserObjId:  "id",
 	DbBackends: nil,
