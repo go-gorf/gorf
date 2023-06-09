@@ -1,7 +1,7 @@
 # Golang Rest Framework (Gorf)
 
-[![Go](https://github.com/go-gorf/gorf/actions/workflows/go.yml/badge.svg)](https://github.com/go-gorf/gorf/actions/workflows/go.yml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/go-gorf/gorf.svg)](https://pkg.go.dev/github.com/go-gorf/gorf)  
+[![Build Status](https://img.shields.io/github/actions/workflow/status/go-gorf/gorf/go.yml?branch=main&style=for-the-badge)](https://github.com/go-gorf/gorf/actions?workflow=build)
+[![](http://img.shields.io/badge/godoc-reference-5272B4.svg?style=for-the-badge)](https://pkg.go.dev/github.com/go-gorf/gorf) 
 
 Django inspired Rest Framework for Golang.
 
