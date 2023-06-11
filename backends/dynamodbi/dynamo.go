@@ -15,7 +15,7 @@ type DynamoBackend struct {
 //	if err != nil {
 //		log.Fatalf("unable to load SDK config, %v", err)
 //	}
-func (b *DynamoBackend) Connect() (gorf.GorfDB, error) {
+func (b *DynamoBackend) Connect() (gorf.Db, error) {
 
 	db := &DynamoDB{
 		DB: dynamodb.NewFromConfig(b.cfg),

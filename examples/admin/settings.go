@@ -6,13 +6,12 @@ import (
 	"github.com/go-gorf/gorf"
 )
 
-var apps = []gorf.GorfApp{
-	&admin.AdminApp,
+var apps = []gorf.App{
+	&admin.App,
 }
 
 func LoadSettings() {
-	// jwt secret key
-	gorf.Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuopRvjndsvnsn08YleBx6pEv0cQ09a"
+	gorf.Settings.SecretKey = "GOo8Rs8ht7qdxv6uUAjkQuQ09a"
 
 }
 

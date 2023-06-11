@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-var apps = []GorfApp{}
+var apps = []App{}
 
 func LoadSettings() {
 	// jwt secret key

@@ -2,27 +2,27 @@ package gorf
 
 import "errors"
 
-type GorfDbOperationType int
+type DbOperationType int
 
 const (
-	CREATE GorfDbOperationType = iota
+	CREATE DbOperationType = iota
 	GET
 	UPDATE
 	DELETE
 )
 
-type GorfQuery interface {
+type Query interface {
 	Describe() (string, error)
-	Operation() GorfDbOperationType
+	Operation() DbOperationType
 }
 
-type GorfQuerySet interface {
+type QuerySet interface {
 	Count() (int, error)
 	First() (any, error)
 	Last() (any, error)
 }
 
-type GorfDB interface {
+type Db interface {
 	Get(dest interface{}, key string) error
 	Filter(dest interface{}, conds ...interface{}) error
 	AutoMigrate(dst ...interface{}) error
@@ -30,12 +30,12 @@ type GorfDB interface {
 	Create(value interface{}) error
 }
 
-type GorfDbBackend interface {
-	Connect() (GorfDB, error)
+type DbBackend interface {
+	Connect() (Db, error)
 	Disconnect() error
 }
 
-var DB GorfDB
+var DB Db
 
 func InitializeDatabase() error {
 	var err error
