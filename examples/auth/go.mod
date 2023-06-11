@@ -2,13 +2,10 @@ module github.com/go-gorf/gorf/example/auth
 
 go 1.20
 
-replace github.com/go-gorf/gorf => ../../
-
-replace github.com/go-gorf/auth => ../../../auth
 
 require (
 	github.com/gin-gonic/gin v1.9.1
-	github.com/go-gorf/auth v0.0.0-00010101000000-000000000000
+	github.com/go-gorf/auth v0.0.8
 	github.com/go-gorf/gorf v0.0.13
 )
 
