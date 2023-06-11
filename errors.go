@@ -13,9 +13,9 @@ type Err struct {
 
 func (e *Err) Response() gin.H {
 	return gin.H{
-		"message":     e.Msg,
-		"error":       e.Er.Error(),
-		"status_code": e.status,
+		"Message":    e.Msg,
+		"Error":      e.Er.Error(),
+		"StatusCode": e.status,
 	}
 }
 
