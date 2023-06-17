@@ -2,8 +2,8 @@ module github.com/go-gorf/gorf/example/auth
 
 go 1.20
 
-
 require (
+	github.com/caarlos0/env/v8 v8.0.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-gorf/auth v0.0.8
 	github.com/go-gorf/gorf v0.0.13
@@ -24,7 +24,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sts v1.19.0 // indirect
 	github.com/aws/smithy-go v1.13.5 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
-	github.com/caarlos0/env/v8 v8.0.0 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect

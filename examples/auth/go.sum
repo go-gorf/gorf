@@ -42,6 +42,10 @@ github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-gonic/gin v1.9.1 h1:4idEAncQnU5cB7BeOkPtxjfCSye0AAm1R0RVIqJ+Jmg=
 github.com/gin-gonic/gin v1.9.1/go.mod h1:hPrL7YrpYKXt5YId3A/Tnip5kqbEAP+KLuI3SUcPTeU=
+github.com/go-gorf/auth v0.0.8 h1:IgGihyCSGK4yAcqsUIhTTaDbtqGUUGazqp8xCaG74Cw=
+github.com/go-gorf/auth v0.0.8/go.mod h1:ScS3BQFwjBTfJmIr6WsQtrrNTGjK8fAoQTGS3WSvt3U=
+github.com/go-gorf/gorf v0.0.13 h1:WEUOi70YIxWHjpqCPBqrQorF8ChBlrnJdneUZqZ7+Jw=
+github.com/go-gorf/gorf v0.0.13/go.mod h1:acQM4lBRkth4svxXvz+OdWiZcprJJuPtVvBgIyPoVi4=
 github.com/go-playground/assert/v2 v2.2.0 h1:JvknZsQTYeFEAhQwI4qEt9cyV5ONwRHC+lYKSsYSR8s=
 github.com/go-playground/locales v0.14.1 h1:EWaQ/wswjilfKLTECiXz7Rh+3BjFhfDFKv/oXslEjJA=
 github.com/go-playground/locales v0.14.1/go.mod h1:hxrqLVvrK65+Rwrd5Fc6F2O76J/NuW9t0sjnWqG1slY=
