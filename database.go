@@ -28,6 +28,7 @@ type Db interface {
 	AutoMigrate(dst ...interface{}) error
 	First(dest interface{}, conds ...interface{}) error
 	Create(value interface{}) error
+	GetUser(dest interface{}, id string) error
 }
 
 type DbBackend interface {
