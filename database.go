@@ -46,7 +46,7 @@ func InitializeDatabase() error {
 
 	DB, err = Settings.DbBackends.Connect()
 	if err != nil {
-		return errors.New("Unable to initialise the database")
+		return errors.New("unable to initialise the database")
 	}
 	return nil
 }
