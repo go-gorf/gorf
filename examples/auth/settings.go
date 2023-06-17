@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-gorf/auth"
 	"github.com/go-gorf/gorf"
+	"github.com/go-gorf/gorf/backends/gormi"
 	"log"
 )
 
@@ -27,9 +28,14 @@ func LoadSettings() {
 	}
 
 	gorf.Settings.SecretKey = cfg.SecretKey
+	gorf.Settings.DbBackends = gormi.NewSqliteBackend("db.sqlite")
+
+	_ = gorf.InitializeDatabase()
+
 	auth.Settings.Region = cfg.Region
 	auth.Settings.ClientId = cfg.ClientId
 	auth.Settings.UserPool = cfg.UserPool
+	auth.Settings.AuthMiddleware = auth.NewJwtMiddleware(gorf.DB)
 }
 
 // BootstrapRouter bootstrap server

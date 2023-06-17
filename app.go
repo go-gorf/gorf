@@ -3,6 +3,7 @@ package gorf
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"log"
 )
 
 // Apps array of all registered apps
@@ -49,7 +50,7 @@ func SetupApps() {
 	for _, app := range Apps {
 		err := app.Setup()
 		if err != nil {
-			panic("Unable to configure apps")
+			log.Fatal("unable to configure apps, ", err.Error())
 		}
 	}
 }
