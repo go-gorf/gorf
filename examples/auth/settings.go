@@ -27,15 +27,20 @@ func LoadSettings() {
 		log.Fatal(err.Error())
 	}
 
+	//Gorf settings
 	gorf.Settings.SecretKey = cfg.SecretKey
 	gorf.Settings.DbBackends = gormi.NewSqliteBackend("db.sqlite")
 
 	_ = gorf.InitializeDatabase()
 
+	//Auth Settings
 	auth.Settings.Region = cfg.Region
 	auth.Settings.ClientId = cfg.ClientId
 	auth.Settings.UserPool = cfg.UserPool
-	auth.Settings.AuthMiddleware = auth.NewJwtMiddleware(gorf.DB)
+	auth.Settings.AuthMiddleware = auth.NewJwtMiddleware(
+		gorf.DB,
+		auth.NewCognitoJwks(),
+	)
 }
 
 // BootstrapRouter bootstrap server
