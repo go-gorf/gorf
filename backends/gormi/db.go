@@ -9,14 +9,22 @@ type GormDB struct {
 }
 
 func (d *GormDB) Get(dest interface{}, key string) error {
+	//TODO:implement
+	return nil
+}
+
+func (d *GormDB) GetUser(dest interface{}, id string) error {
+	//TODO:implement
 	return nil
 }
 
 func (d *GormDB) Filter(dest interface{}, conds ...interface{}) error {
+	//TODO:implement
 	return nil
 }
 
 func (d *GormDB) AutoMigrate(dst ...interface{}) error {
+	//TODO:implement
 	return d.DB.Migrator().AutoMigrate(dst...)
 }
 

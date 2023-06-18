@@ -10,6 +10,10 @@ type GormSqliteBackend struct {
 	Name string
 }
 
+func NewSqliteBackend(name string) *GormSqliteBackend {
+	return &GormSqliteBackend{Name: name}
+}
+
 func (b *GormSqliteBackend) Connect() (gorf.Db, error) {
 	db, err := gorm.Open(sqlite.Open(b.Name), &gorm.Config{})
 	if err != nil {

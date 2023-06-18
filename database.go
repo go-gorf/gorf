@@ -28,6 +28,7 @@ type Db interface {
 	AutoMigrate(dst ...interface{}) error
 	First(dest interface{}, conds ...interface{}) error
 	Create(value interface{}) error
+	GetUser(dest interface{}, id string) error
 }
 
 type DbBackend interface {
@@ -45,7 +46,7 @@ func InitializeDatabase() error {
 
 	DB, err = Settings.DbBackends.Connect()
 	if err != nil {
-		return errors.New("Unable to initialise the database")
+		return errors.New("unable to initialise the database")
 	}
 	return nil
 }

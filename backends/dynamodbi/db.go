@@ -9,6 +9,9 @@ type DynamoDB struct {
 func (d *DynamoDB) Get(dest interface{}, key string) error {
 	return nil
 }
+func (d *DynamoDB) GetUser(dest interface{}, id string) error {
+	return nil
+}
 
 func (d *DynamoDB) Filter(dest interface{}, conds ...interface{}) error {
 	return nil
