@@ -7,7 +7,7 @@ replace github.com/go-gorf/gorf => ../../
 require (
 	github.com/aws/aws-sdk-go-v2 v1.18.0
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.19.7
-	github.com/go-gorf/gorf v0.0.11
+	github.com/go-gorf/gorf v0.0.14
 )
 
 require (
