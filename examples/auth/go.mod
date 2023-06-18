@@ -5,8 +5,8 @@ go 1.20
 require (
 	github.com/caarlos0/env/v8 v8.0.0
 	github.com/gin-gonic/gin v1.9.1
-	github.com/go-gorf/auth v0.0.8
-	github.com/go-gorf/gorf v0.0.13
+	github.com/go-gorf/auth v0.0.9
+	github.com/go-gorf/gorf v0.0.14
 )
 
 replace github.com/go-gorf/gorf => ../../
@@ -16,7 +16,7 @@ replace github.com/go-gorf/gorf/common => ../../common
 replace github.com/go-gorf/gorf/backends/gormi => ../../backends/gormi
 
 //remove
-replace github.com/go-gorf/auth => ../../../auth
+//replace github.com/go-gorf/auth => ../../../auth
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.18.0 // indirect
